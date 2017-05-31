@@ -1,0 +1,2 @@
+# BashSoft
+Softuni solo project
