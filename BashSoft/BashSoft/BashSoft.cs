@@ -12,11 +12,30 @@ namespace BashSoft
        public static void Main()
         {
             // Frist Part
-          // IOManager.TraverseDirectory(@"C:\Users\MiroslavCharakchiev\Downloads\C# Advance docx\BashSoft-FirstWeek\BashSoft-FirstWeek\02. CSharp-Advanced-Sets-And-Dictionaries-Lab");
-          
+            IOManager.ChangeCurrentDirectoryRelative(@"..");
+            IOManager.ChangeCurrentDirectoryRelative(@"..");
+            IOManager.ChangeCurrentDirectoryRelative(@"..");
+            IOManager.ChangeCurrentDirectoryRelative(@"..");
+            IOManager.ChangeCurrentDirectoryRelative(@"..");
+            IOManager.ChangeCurrentDirectoryRelative(@"..");
+            IOManager.ChangeCurrentDirectoryRelative(@"..");
+            IOManager.ChangeCurrentDirectoryRelative(@"..");
+            IOManager.ChangeCurrentDirectoryRelative(@"..");
+            IOManager.ChangeCurrentDirectoryRelative(@"..");
+            IOManager.ChangeCurrentDirectoryRelative(@"..");
+            IOManager.ChangeCurrentDirectoryRelative(@"..");
+            // IOManager.TraverseDirectory(SessionData.currentPath);
+
             //Second Part
-            StudentsRepository.initializeData();
-            StudentsRepository.GetStudentScoteFromCourse("Unity","Ivan");
+            //StudentsRepository.initializeData();
+            //StudentsRepository.GetStudentScoteFromCourse("Unity","Ivan");
+
+            // Part Three
+               /*Tester.CompareContent(@"C:\Users\MiroslavCharakchiev\Downloads\C# Advance docx\BashSoft-FirstWeek\BashSoft-FirstWeek\04. CSharp-Advanced-Exception-Handling-Lab\actdual.txt",
+                   @"C:\Users\MiroslavCharakchiev\Downloads\C# Advance docx\BashSoft-FirstWeek\BashSoft-FirstWeek\04. CSharp-Advanced-Exception-Handling-Lab\expedcted.txt");*/
+
+           // IOManager.CreateDirectoryInCurrentFolder("*2");
+
         }
     }
 }

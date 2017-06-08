@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Odbc;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace BashSoft
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public static class StudentsRepository
     {
         public static bool IsDataInitialized = false;
