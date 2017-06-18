@@ -1,6 +1,4 @@
 ﻿
-using System.ComponentModel;
-
 namespace BashSoft
 {
     using System;
@@ -10,17 +8,22 @@ namespace BashSoft
 
     public static class IOManager
     {
-        public static void TraverseDirectory(string path)
+        public static void TraverseDirectory(int depth)
         {
             OutputWriter.WriteEmptyLine();
             var initialIndentation = SessionData.currentPath.Split('\\').Length;
             var subFolders = new Queue<string>();
-            subFolders.Enqueue(path);
+            subFolders.Enqueue(SessionData.currentPath);
 
             while (subFolders.Count != 0)
             {
                 var currentPath = subFolders.Dequeue();
                 var identation = currentPath.Split('\\').Length - initialIndentation;
+
+                if (depth - identation < 0)
+                {
+                    break;
+                }
 
                 OutputWriter.WriteMessageOnNewLine(string.Format("{0}{1}", new string('-', identation), currentPath));
 

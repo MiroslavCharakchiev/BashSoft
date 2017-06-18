@@ -8,7 +8,7 @@ namespace BashSoft
     {
         public static void WriteMessage(string message)
         {
-            
+            Console.Write(message);
         }
         public static void WriteMessageOnNewLine(string message)
         {
@@ -16,7 +16,7 @@ namespace BashSoft
         }
         public static void WriteEmptyLine()
         {
-
+            Console.WriteLine();
         }
         public static void DisplayExeption(string message)
         {

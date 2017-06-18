@@ -43,10 +43,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BashSoft.cs" />
+    <Compile Include="CommandInterpreter.cs" />
     <Compile Include="ExceptionMessages.cs" />
+    <Compile Include="InputReader.cs" />
     <Compile Include="IOManager.cs" />
     <Compile Include="OutputWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryFilters.cs" />
+    <Compile Include="RepositorySorters.cs" />
     <Compile Include="SessionData.cs" />
     <Compile Include="StudentsRepository.cs" />
     <Compile Include="Tester.cs" />
