@@ -4,9 +4,9 @@ namespace BashSoft
     using System;
     using System.IO;
 
-    public static class Tester
+    public  class Tester
     {
-        public static void CompareContent(string UserOutputPath, string ExpectedOutputPath)
+        public void CompareContent(string UserOutputPath, string ExpectedOutputPath)
         {
             OutputWriter.WriteMessageOnNewLine("Reading files...");
             try
@@ -21,15 +21,23 @@ namespace BashSoft
                 PrintOutput(mismatches, hasMismatch, mismatchPath);
                 OutputWriter.WriteMessageOnNewLine("Files read!");
             }
-            catch (FileNotFoundException)
+            catch (DirectoryNotFoundException dnfe)
             {
-                OutputWriter.WriteMessageOnNewLine(ExceptionMessages.InvalidPath);
+                OutputWriter.DisplayExeption(dnfe.Message);
+            }
+            catch (FileNotFoundException fnfe)
+            {
+                OutputWriter.DisplayExeption(fnfe.Message);
+            }
+            catch(Exception e)
+            {
+                OutputWriter.WriteMessageOnNewLine(e.Message);
             }
             
 
         }
 
-        private static void PrintOutput(string[] mismatches, bool hasMismatch, string mismatchPath)
+        private void PrintOutput(string[] mismatches, bool hasMismatch, string mismatchPath)
         {
             if (hasMismatch)
             {
@@ -37,15 +45,7 @@ namespace BashSoft
                 {
                     OutputWriter.WriteMessageOnNewLine(line);
                 }
-                try
-                {
                     File.WriteAllLines(mismatchPath, mismatches);
-
-                }
-                catch (DirectoryNotFoundException)
-                {
-                    OutputWriter.WriteMessageOnNewLine(ExceptionMessages.InvalidPath);
-                }
             }
             else
             {
@@ -54,7 +54,7 @@ namespace BashSoft
 
         }
 
-        private static string[] GetLineWithPossibleMissmatch(string[] actualOutputLines, string[] expectedOutputLines, out bool hasMismatch)
+        private  string[] GetLineWithPossibleMissmatch(string[] actualOutputLines, string[] expectedOutputLines, out bool hasMismatch)
         {
             hasMismatch = false;
             var output = string.Empty;
@@ -90,7 +90,7 @@ namespace BashSoft
             return mismatches;
         }
 
-        private static string GetMismatchPath(string ExpectedOutputPath)
+        private  string GetMismatchPath(string ExpectedOutputPath)
         {
             var indexOf = ExpectedOutputPath.LastIndexOf('\\');
             var directorypath = ExpectedOutputPath.Substring(0, indexOf);

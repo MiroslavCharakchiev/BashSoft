@@ -3,16 +3,23 @@ namespace BashSoft
 {
     using System;
 
-    public static class InputReader
+    public  class InputReader
    {
        private const string endCommand = "quit";
-        public static void StartReadingCommands()
+       private CommandInterpreter interpreter;
+
+       public InputReader(CommandInterpreter interpreter)
+       {
+           this.interpreter = interpreter;
+       }
+
+        public  void StartReadingCommands()
         {
             OutputWriter.WriteMessage($"{SessionData.currentPath}> ");
             var input = Console.ReadLine();
             while (input != endCommand)
             {
-                CommandInterpreter.InterpredComand(input);
+                this.interpreter.InterpredComand(input);
 
                 OutputWriter.WriteMessage($"{SessionData.currentPath}> ");
                 input = Console.ReadLine().Trim();

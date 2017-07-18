@@ -1,4 +1,6 @@
 ﻿
+using BashSoft.Exceptions;
+
 namespace BashSoft
 {
     using System;
@@ -6,9 +8,9 @@ namespace BashSoft
     using System.IO;
 
 
-    public static class IOManager
+    public  class IOManager
     {
-        public static void TraverseDirectory(int depth)
+        public  void TraverseDirectory(int depth)
         {
             OutputWriter.WriteEmptyLine();
             var initialIndentation = SessionData.currentPath.Split('\\').Length;
@@ -42,14 +44,14 @@ namespace BashSoft
                 }
                 catch (UnauthorizedAccessException)
                 {
-                    OutputWriter.WriteMessageOnNewLine(ExceptionMessages.UnauthorizedAccessException);
+                    throw new UnauthorizedAccessException(ExceptionMessages.UnauthorizedAccessException);
                 }
                 
 
             }
         }
 
-        public static void CreateDirectoryInCurrentFolder(string name)
+        public  void CreateDirectoryInCurrentFolder(string name)
         {
             var path = Directory.GetCurrentDirectory() + "\\" + name;
             try
@@ -59,11 +61,11 @@ namespace BashSoft
             }
             catch (ArgumentException)
             {
-                OutputWriter.WriteMessageOnNewLine(ExceptionMessages.ForbiddenSymbolsContainedInName);
+               throw new InvalidFileNameException();
             }
         }
 
-        public static void ChangeCurrentDirectoryRelative(string relativePaath)
+        public  void ChangeCurrentDirectoryRelative(string relativePaath)
         {
             if (relativePaath == "..")
             {
@@ -76,7 +78,7 @@ namespace BashSoft
                 }
                 catch (ArgumentOutOfRangeException)
                 {
-                    OutputWriter.WriteMessageOnNewLine(ExceptionMessages.UnableToGoHighterInpartitionHierarchy);
+                    throw new InvalidPathException();
                 }
                
             }
@@ -90,18 +92,17 @@ namespace BashSoft
                 }
                 catch (Exception)
                 {
-                   OutputWriter.WriteMessageOnNewLine(ExceptionMessages.InvalidPath);
+                  throw new InvalidPathException();
                 }
               
             }
         }
 
-        public static void ChangeCurrentDirectoryAbsolute(string currentPath)
+        public  void ChangeCurrentDirectoryAbsolute(string currentPath)
         {
             if (!Directory.Exists(currentPath))
             {
-                OutputWriter.DisplayExeption(ExceptionMessages.InvalidPath);
-                return;
+               throw new InvalidPathException();
             }
             SessionData.currentPath = currentPath;
         }
